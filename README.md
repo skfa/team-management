@@ -1,2 +1,2 @@
 # team-management
-Team management app using Django React
+Team management app using Django and React
