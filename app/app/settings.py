@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_spectacular',
     'user',
+    'recipe',
+    'team',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -138,3 +142,7 @@ AUTH_USER_MODEL = 'core.User'
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
+
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:3000'
+]

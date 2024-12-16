@@ -1,7 +1,7 @@
 """
 Database models
 """
-
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser,
@@ -41,3 +41,33 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+class Recipe(models.Model):
+    """Recipe object"""
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    title = models.CharField(max_length=225)
+    description = models.TextField(blank=True)
+    time_minutes = models.IntegerField(default=1)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    link = models.CharField(max_length=225, blank=True)
+
+    def __str__(self):
+        return self.title
+
+class TeamMember(models.Model):
+    """Team member object"""
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(max_length=225)
+    email = models.TextField(blank=True)
+    phone = models.CharField(max_length=225)
+    location = models.CharField(max_length=225)
+    role = models.CharField(max_length=225)
+
+    def __str__(self):
+        return self.name
