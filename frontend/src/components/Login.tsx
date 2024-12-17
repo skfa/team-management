@@ -6,27 +6,22 @@ const Login =()=>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const {login, logout} = useAuth();
+    const {auth, login, logout} = useAuth();
     const apiService = new APIService();
 
     const handleSubmit = async(e:any) =>{
         e.preventDefault();
         setError('');
-
-
         try {
-            /*const response = await apiService.post('/api/user/token/', {email, password});
-
-            if(!response.ok){
-                throw new Error("Invalid email or password")
+            const loggedin = await login(email, password);
+            if (loggedin){
+                console.log('Login successful');
             }
-
-            const {token} = await response.json(); */
-            login(email, password);
-            alert('Login successful');
-
+            else {
+                console.log('Login failed');
+            }
         } catch(e){
-
+            console.error(e);
         }
     }
 

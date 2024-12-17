@@ -10,7 +10,6 @@ function App() {
   const {auth} = useAuth();
 
   return (
-    <AuthProvider>
     <div>
       <header className='bg-gray-800 shadow'>
         <div className='mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8'>
@@ -21,24 +20,10 @@ function App() {
       </header>
       <main>
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          {
-            (()=>{
-              if(!auth.isAuthenticated){
-                return (
-                  <Login></Login>
-                );
-              }
-              else {
-                  <Outlet></Outlet>
-              }
-            })()
-          }
-
+          { auth.token ? <Outlet></Outlet> : <Login></Login>}
         </div>
       </main>
-
     </div>
-    </AuthProvider>
   );
 }
 

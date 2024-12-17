@@ -10,6 +10,7 @@ import StockDetails from './components/AddEditMember';
 import TeamMembers, { TeamsLoader } from './components/TeamMembers';
 import App from './App';
 import AddEditMember from './components/AddEditMember';
+import { AuthProvider } from './components/AuthProvider';
 
 
 const router = createBrowserRouter([
@@ -40,7 +41,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
 
